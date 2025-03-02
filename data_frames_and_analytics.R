@@ -30,3 +30,21 @@ n<-15
   ### r>=7
   more_than_seven_success = pbinom(6,n,p,lower.tail = FALSE)
   
+## Q4
+
+mean=100
+sd=20
+
+pnorm.110=pnorm(110, mean, sd,lower.tail = TRUE)
+pnorm.90=pnorm(90, mean, sd,lower.tail = TRUE)
+pnorm.90.110=pnorm.110-pnorm.90
+pnorm.90.110
+
+## Q5
+
+internet_sales.csv=data.frame(read.csv(choose.files(), header = TRUE, sep = ","))
+customized_internet_sales<-internet_sales.csv[,c("OrderQuantity","ProductKey")]
+names(customized_internet_sales)<-c("Quantity", "ProductKey")
+
+mixed_sales<-rbind(sales.csv[,c("Quantity","ProductKey")], customized_internet_sales[,c("Quantity","ProductKey")])
+mixed_sales
