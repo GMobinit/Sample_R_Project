@@ -48,3 +48,25 @@ names(customized_internet_sales)<-c("Quantity", "ProductKey")
 
 mixed_sales<-rbind(sales.csv[,c("Quantity","ProductKey")], customized_internet_sales[,c("Quantity","ProductKey")])
 mixed_sales
+
+## Q6
+
+Customers.csv<-data.frame(read.csv(choose.files()))
+sales.customer.dataframe<-left_join(internet_sales,Customers.csv,by="CustomerKey")
+
+## Q7
+
+merged.customer_sales<-merge(sales.csv, product.csv, by.x = "ResellerKey", by.y = "ProductKey")
+
+## Q8
+Territories.csv<-data.frame(read.csv(choose.files()))
+merged.territory_sales<-merge(Territories.csv, sales.csv, by = "SalesTerritoryKey")
+product_per_country<-merged.territory_sales[,c("Country","ProductKey","Quantity")]
+
+total_sales_per_country<-product_per_country %>% group_by(Country) %>% summarise(totalSales = sum(Quantity))
+max_sales=max(total_sales_per_country$totalSales)
+min_sales=min(total_sales_per_country$totalSales)
+average = mean(total_sales_per_country$totalSales)
+
+
+## Q9
